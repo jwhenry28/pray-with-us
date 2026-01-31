@@ -1,18 +1,17 @@
+import { useState } from "react";
 import { useParams } from "react-router-dom";
 
 import type { Saint } from "@/types/saint";
 import { useGet } from "@/hooks/useGet";
 import SaintForm from "./SaintForm";
+import SaintCard from "./SaintCard";
 
 const SaintEditor = () => {
+  const [saint, setSaint] = useState<Saint | null>(null);
   const { id: saintId } = useParams();
-  const {
-    data: fetchedSaint,
-    error,
-    loading,
-  } = useGet<Saint>(`/saints/${saintId}`);
+  const { error, loading } = useGet<Saint>(`/saints/${saintId}`, setSaint);
 
-  if (loading || !fetchedSaint) {
+  if (loading) {
     return <p>Loading...</p>;
   }
 
@@ -20,7 +19,16 @@ const SaintEditor = () => {
     return <p>Encountered an error: {String(error)}</p>;
   }
 
-  return <SaintForm saint={fetchedSaint} />;
+  if (!saint) {
+    return <p>no saint by that name</p>;
+  }
+
+  return (
+    <div className="flex flex-row">
+      <SaintForm saint={saint} setSaint={setSaint} />
+      <SaintCard saint={saint} />
+    </div>
+  );
 };
 
 export default SaintEditor;

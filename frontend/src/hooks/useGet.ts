@@ -3,9 +3,8 @@ import { AxiosError } from "axios";
 import type { AxiosResponse } from "axios";
 import { useAxios } from "./useAxios";
 
-export function useGet<T>(path: string) {
+export function useGet<T>(path: string, setData: (data: T) => void) {
   const axios = useAxios();
-  const [data, setData] = useState<T | null>(null);
   const [error, setError] = useState<Error | null>(null);
   const [loading, setLoading] = useState(true);
 
@@ -16,7 +15,7 @@ export function useGet<T>(path: string) {
         setLoading(false);
       }
     },
-    [],
+    [setData],
   );
 
   const handleError = useCallback((err: unknown, cancelled: boolean) => {
@@ -38,5 +37,5 @@ export function useGet<T>(path: string) {
     };
   }, [axios, path, handleSuccess, handleError]);
 
-  return { data, error, loading };
+  return { error, loading };
 }

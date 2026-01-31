@@ -1,92 +1,71 @@
 import { useState } from "react";
-import type { SubmitEvent } from "react";
+import type { Dispatch, SetStateAction, SubmitEvent } from "react";
 
 import type { Saint } from "@/types/saint";
 import { useAxios } from "@/hooks/useAxios";
+import SaintFormInput from "./SaintFormInput";
 
 type SaintFormProps = {
   saint: Saint;
+  setSaint: Dispatch<SetStateAction<Saint | null>>;
 };
 
-const SaintForm = ({ saint }: SaintFormProps) => {
+const SaintForm = ({ saint, setSaint }: SaintFormProps) => {
   const axios = useAxios();
-  const [formSaint, setFormSaint] = useState<Saint>(saint);
   const [saving, setSaving] = useState(false);
 
-  const dynamicStyles = { backgroundColor: formSaint.color };
+  const dynamicStyles = { backgroundColor: saint.color };
 
   const handleSubmit = async (e: SubmitEvent) => {
     e.preventDefault();
     setSaving(true);
     try {
-      await axios.post(`/saints/${formSaint.id}`, formSaint);
+      await axios.post(`/saints/${saint.id}`, saint);
     } finally {
       setSaving(false);
     }
   };
 
   return (
-    <div style={dynamicStyles}>
+    <div style={dynamicStyles} className="flex-1">
       <form onSubmit={handleSubmit}>
-        <p>
-          <label htmlFor="image">Image</label>
-          <input
-            id="image"
+        <div className="grid grid-cols-[auto_1fr] gap-4 items-start">
+          <SaintFormInput
+            field="image"
             type="text"
-            name="image"
-            required
-            value={formSaint.image}
-            onChange={(e) => {
-              setFormSaint((prev) =>
-                prev ? { ...prev, image: e.target.value } : prev,
-              );
-            }}
+            inputClasses="w-full"
+            value={saint.image}
+            onUpdate={setSaint}
           />
-        </p>
-        <p>
-          <label htmlFor="color">Color</label>
-          <input
-            id="color"
+          <SaintFormInput
+            field="color"
+            type="color"
+            inputClasses="w-[25%]"
+            value={saint.color}
+            onUpdate={setSaint}
+          />
+          <SaintFormInput
+            field="name"
             type="text"
-            name="color"
-            required
-            value={formSaint.color}
-            onChange={(e) => {
-              setFormSaint((prev) =>
-                prev ? { ...prev, color: e.target.value } : prev,
-              );
-            }}
+            inputClasses="w-full"
+            value={saint.name}
+            onUpdate={setSaint}
           />
-        </p>
-        <p>
-          <label htmlFor="name">Name</label>
-          <input
-            id="name"
-            type="text"
-            name="name"
-            required
-            value={formSaint.name}
-            onChange={(e) => {
-              setFormSaint((prev) =>
-                prev ? { ...prev, name: e.target.value } : prev,
-              );
-            }}
-          />
-        </p>
-        <p>
-          <label htmlFor="prayer">Prayer</label>
-          <textarea
-            id="prayer"
-            name="prayer"
-            required
-            value={formSaint.prayer.join("\n")}
-            onChange={(e) => {
-              setFormSaint((prev) =>
-                prev ? { ...prev, prayer: e.target.value.split("\n") } : prev,
-              );
-            }}
-          />
-        </p>
+          <>
+            <label htmlFor="prayer">Prayer</label>
+            <textarea
+              id="prayer"
+              name="prayer"
+              required
+              value={saint.prayer.join("\n")}
+              onChange={(e) => {
+                setSaint((prev) =>
+                  prev ? { ...prev, prayer: e.target.value.split("\n") } : prev,
+                );
+              }}
+            />
+          </>
+        </div>
         <button type="submit" disabled={saving}>
           {saving ? "Saving..." : "Save"}
         </button>
