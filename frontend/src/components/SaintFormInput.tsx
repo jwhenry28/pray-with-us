@@ -18,10 +18,11 @@ const SaintFormInput = ({
   onUpdate,
 }: SaintFormInputProps) => {
   const fieldLower = field.toLowerCase();
+  const fieldTitle = field[0].toUpperCase() + field.slice(1);
 
   return (
     <>
-      <label htmlFor={fieldLower}>{field}</label>
+      <label htmlFor={fieldLower}>{fieldTitle}</label>
       <input
         id={fieldLower}
         className={inputClasses}

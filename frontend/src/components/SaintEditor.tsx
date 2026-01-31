@@ -24,9 +24,11 @@ const SaintEditor = () => {
   }
 
   return (
-    <div className="flex flex-row">
+    <div className="flex flex-row items-center">
       <SaintForm saint={saint} setSaint={setSaint} />
-      <SaintCard saint={saint} />
+      <div className="mx-32">
+        <SaintCard saint={saint} />
+      </div>
     </div>
   );
 };

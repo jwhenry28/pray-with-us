@@ -14,8 +14,6 @@ const SaintForm = ({ saint, setSaint }: SaintFormProps) => {
   const axios = useAxios();
   const [saving, setSaving] = useState(false);
 
-  const dynamicStyles = { backgroundColor: saint.color };
-
   const handleSubmit = async (e: SubmitEvent) => {
     e.preventDefault();
     setSaving(true);
@@ -27,7 +25,7 @@ const SaintForm = ({ saint, setSaint }: SaintFormProps) => {
   };
 
   return (
-    <div style={dynamicStyles} className="flex-1">
+    <div className="w-full p-8 rounded-md mx-4 bg-pwu-secondary border-black border-1">
       <form onSubmit={handleSubmit}>
         <div className="grid grid-cols-[auto_1fr] gap-4 items-start">
           <SaintFormInput
@@ -56,6 +54,7 @@ const SaintForm = ({ saint, setSaint }: SaintFormProps) => {
             <textarea
               id="prayer"
               name="prayer"
+              className="min-h-64"
               required
               value={saint.prayer.join("\n")}
               onChange={(e) => {
