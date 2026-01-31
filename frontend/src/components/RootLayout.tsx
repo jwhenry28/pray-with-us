@@ -4,7 +4,7 @@ const RootLayout = () => {
   return (
     <>
       <main className="bg-pwu-primary min-h-screen pt-16">
-        <Outlet />;
+        <Outlet />
       </main>
     </>
   );

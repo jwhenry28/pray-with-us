@@ -1,10 +1,10 @@
 import axios from "axios";
 import { useMemo } from "react";
 
-import { useGetEnv } from "./useGetEnv";
+import { useEnv } from "./useEnv";
 
 export const useAxios = () => {
-  const { baseURL } = useGetEnv();
+  const { baseURL } = useEnv();
 
   return useMemo(() => axios.create({ baseURL }), [baseURL]);
 };
