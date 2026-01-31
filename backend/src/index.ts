@@ -1,26 +1,16 @@
-import express, { Request, Response } from "express";
-
-import path from "path";
-import { fileURLToPath } from "url";
+import express from "express";
 
 import saintsRouter from "@/routes/saints.js";
 import { handleError } from "./controllers/errors.js";
-
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = path.dirname(__filename);
+import { NotFoundError } from "./models/error.js";
 
 const app = express();
 const port = process.env.PORT || 3000;
 
-app.set("view engine", "ejs");
-app.set("views", path.join(__dirname, "../views"));
-app.use(express.static(path.join(__dirname, "../public")));
 app.use(express.json());
-
 app.use(saintsRouter);
-
-app.get("/", (req: Request, res: Response) => {
-  res.render("index", { title: "My App" });
+app.use("/", () => {
+  throw new NotFoundError();
 });
 
 app.use(handleError);
