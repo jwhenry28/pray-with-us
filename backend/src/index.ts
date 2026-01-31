@@ -4,6 +4,7 @@ import path from "path";
 import { fileURLToPath } from "url";
 
 import saintsRouter from "@/routes/saints.js";
+import { handleError } from "./controllers/errors.js";
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -21,6 +22,8 @@ app.use(saintsRouter);
 app.get("/", (req: Request, res: Response) => {
   res.render("index", { title: "My App" });
 });
+
+app.use(handleError);
 
 app.listen(port, () => {
   console.log(`Server running on port ${port}`);

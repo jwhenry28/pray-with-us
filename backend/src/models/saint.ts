@@ -1,9 +1,7 @@
-type Saint = {
+export type Saint = {
   id: string;
   name: string;
   image?: string;
   color: string;
   prayer: string[];
 };
-
-export { Saint };
