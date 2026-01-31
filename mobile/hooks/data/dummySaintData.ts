@@ -6,7 +6,7 @@ const dummySaintData: Record<string, SaintData> = {
     prayer: [
       "Picture the desert before you.",
       "The sun is hot. The air is dry.",
-      "You are completely alone in total silence.",
+      "You are completely alone in total solitude.",
     ],
   },
   "ignatius-of-loyola": { id: "ignatius-of-loyola", prayer: [] },

@@ -3,7 +3,7 @@ import { Pressable, Text, StyleSheet } from "react-native";
 import { NativeStackNavigationProp } from "@react-navigation/native-stack";
 import { RouteProp } from "@react-navigation/native";
 
-import { SaintData, RootStackParamList } from "../types";
+import { RootStackParamList } from "../types";
 import useGetSaintData from "../hooks/useGetSaintData";
 import useGetSaintCardData from "../hooks/useGetSaintCardData";
 import TypewriterText from "../components/TypewriterText";
@@ -53,6 +53,7 @@ const SaintScreen = ({ route, navigation }: SaintScreenProps) => {
         pressed && styles.pressed,
       ]}
       onPress={onPressHandler}
+      disabled={!typeWriterDone}
     >
       <TypewriterText
         text={currentPrayer}
