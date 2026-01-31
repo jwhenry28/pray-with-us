@@ -10,7 +10,8 @@ const SaintCard = ({ saint, clickable = true }: SaintCardProps) => {
   const dynamicStyles = { backgroundColor: saint.color };
   const baseStyles =
     "flex flex-col justify-between items-center rounded-md p-8 w-64 h-96";
-  const clickableStyles = " cursor-pointer hover:shadow-xl transition-shadow";
+  const clickableStyles =
+    " cursor-pointer hover:shadow-xl hover:scale-105 transition-all";
   const propsStyles = baseStyles + (clickable ? clickableStyles : "");
   const navigate = useNavigate();
 

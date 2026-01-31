@@ -19,13 +19,17 @@ const SaintFormInput = ({
 }: SaintFormInputProps) => {
   const fieldLower = field.toLowerCase();
   const fieldTitle = field[0].toUpperCase() + field.slice(1);
+  const baseClasses = "px-2 py-1 border-b-1 border-black";
+  const allClasses = baseClasses + inputClasses;
 
   return (
     <>
-      <label htmlFor={fieldLower}>{fieldTitle}</label>
+      <label htmlFor={fieldLower} className="font-medium">
+        {fieldTitle}
+      </label>
       <input
         id={fieldLower}
-        className={inputClasses}
+        className={allClasses}
         type={type}
         name={fieldLower}
         required

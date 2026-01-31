@@ -25,7 +25,7 @@ const SaintForm = ({ saint, setSaint }: SaintFormProps) => {
   };
 
   return (
-    <div className="w-full p-8 rounded-md mx-4 bg-pwu-secondary border-black border-1">
+    <div className="w-full p-8 rounded-md mx-4 bg-pwu-secondary border-black border">
       <form onSubmit={handleSubmit}>
         <div className="grid grid-cols-[auto_1fr] gap-4 items-start">
           <SaintFormInput
@@ -49,23 +49,25 @@ const SaintForm = ({ saint, setSaint }: SaintFormProps) => {
             value={saint.name}
             onUpdate={setSaint}
           />
-          <>
-            <label htmlFor="prayer">Prayer</label>
-            <textarea
-              id="prayer"
-              name="prayer"
-              className="min-h-64"
-              required
-              value={saint.prayer.join("\n")}
-              onChange={(e) => {
-                setSaint((prev) =>
-                  prev ? { ...prev, prayer: e.target.value.split("\n") } : prev,
-                );
-              }}
-            />
-          </>
+          <label htmlFor="prayer">Prayer</label>
+          <textarea
+            id="prayer"
+            name="prayer"
+            className="min-h-64"
+            required
+            value={saint.prayer.join("\n")}
+            onChange={(e) => {
+              setSaint((prev) =>
+                prev ? { ...prev, prayer: e.target.value.split("\n") } : prev,
+              );
+            }}
+          />
         </div>
-        <button type="submit" disabled={saving}>
+        <button
+          type="submit"
+          disabled={saving}
+          className="bg-pwu-primary hover:bg-pwu-secondary px-6 py-2 my-2 cursor-pointer border rounded-md"
+        >
           {saving ? "Saving..." : "Save"}
         </button>
       </form>
