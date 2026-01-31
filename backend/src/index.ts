@@ -3,6 +3,8 @@ import express, { Request, Response } from "express";
 import path from "path";
 import { fileURLToPath } from "url";
 
+import saintsRouter from "@/routes/saints.js";
+
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
@@ -13,6 +15,8 @@ app.set("view engine", "ejs");
 app.set("views", path.join(__dirname, "../views"));
 app.use(express.static(path.join(__dirname, "../public")));
 app.use(express.json());
+
+app.use(saintsRouter);
 
 app.get("/", (req: Request, res: Response) => {
   res.render("index", { title: "My App" });
