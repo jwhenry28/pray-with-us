@@ -8,6 +8,12 @@ $ npm run dev
 $ npm run dev:css
 ```
 
+## frontend development
+
+```bash
+$ npm run dev
+```
+
 ## mobile development
 
 ```bash
