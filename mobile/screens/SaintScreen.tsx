@@ -1,9 +1,12 @@
-import { View, Text } from "react-native";
+import { useState } from "react";
+import { Pressable, Text, StyleSheet } from "react-native";
 import { NativeStackNavigationProp } from "@react-navigation/native-stack";
 import { RouteProp } from "@react-navigation/native";
 
 import { SaintData, RootStackParamList } from "../types";
 import useGetSaintData from "../hooks/useGetSaintData";
+import useGetSaintCardData from "../hooks/useGetSaintCardData";
+import TypewriterText from "../components/TypewriterText";
 
 type SaintScreenProps = {
   route: RouteProp<RootStackParamList, "Saint">;
@@ -12,16 +15,85 @@ type SaintScreenProps = {
 
 const SaintScreen = ({ route, navigation }: SaintScreenProps) => {
   const saintId = route.params.saintId;
-  const { data } = useGetSaintData({ id: saintId });
+
+  const [prayerIndex, setPrayerIndex] = useState(0);
+  const [typeWriterDone, setTypewriterDone] = useState(false);
+  const { data: saintData } = useGetSaintData({ id: saintId });
+  const { data: saintCardData } = useGetSaintCardData({ id: saintId });
+
+  const prayerSet = saintData.prayer;
+  const currentPrayer = prayerSet[prayerIndex];
+
+  const nextPrayerHandler = () => {
+    const nextIndex = prayerIndex + 1;
+    if (nextIndex === prayerSet.length) {
+      navigation.navigate("Main");
+      return;
+    }
+
+    setPrayerIndex(nextIndex);
+    setTypewriterDone(false);
+  };
+
+  const onPressHandler = () => {
+    if (typeWriterDone) {
+      nextPrayerHandler();
+    }
+  };
+
+  const onTypewriterDone = () => {
+    setTypewriterDone(true);
+  };
 
   return (
-    <View>
-      <Text>{data.id}</Text>
-      {data.prayer.map((p) => (
-        <Text key={p}>{p}</Text>
-      ))}
-    </View>
+    <Pressable
+      style={({ pressed }) => [
+        styles.outerContainer,
+        { backgroundColor: saintCardData.color },
+        pressed && styles.pressed,
+      ]}
+      onPress={onPressHandler}
+    >
+      <TypewriterText
+        text={currentPrayer}
+        style={styles.text}
+        onDoneTyping={onTypewriterDone}
+      />
+      <Text style={styles.title}>{saintCardData.name}</Text>
+    </Pressable>
   );
 };
+
+const styles = StyleSheet.create({
+  outerContainer: {
+    flex: 1,
+    height: "100%",
+    flexDirection: "column",
+    justifyContent: "flex-end",
+    borderRadius: 16,
+    margin: 8,
+  },
+  pressed: {
+    opacity: 0.5,
+  },
+  title: {
+    flex: 1,
+    fontWeight: "bold",
+    fontSize: 24,
+    textAlign: "center",
+    marginTop: 2,
+    marginBottom: 12,
+    fontFamily: "monospace",
+  },
+  text: {
+    flex: 19,
+    fontSize: 36,
+    textAlign: "center",
+    textAlignVertical: "center",
+    letterSpacing: 4,
+    lineHeight: 72,
+    fontFamily: "monospace",
+  },
+});
 
 export default SaintScreen;

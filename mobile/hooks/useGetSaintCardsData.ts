@@ -7,9 +7,11 @@ const useGetSaintCardsData = (): {
   isLoading: boolean;
   data: SaintCardData[];
 } => {
+  const saintCardDataArray = Object.values(dummySaintCardData);
+
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const [saintsData, setSaintsData] =
-    useState<SaintCardData[]>(dummySaintCardData);
+    useState<SaintCardData[]>(saintCardDataArray);
 
   return {
     isLoading: isLoading,
