@@ -37,6 +37,14 @@ const SaintsDB: Record<string, Saint> = {
       "https://s3.amazonaws.com/cdn.monasteryicons.com/images/popup/st-francis-icon-411.jpg",
     prayer: ["TODO"],
   },
+  "augustine-of-hippo": {
+    id: "augustine-of-hippo",
+    name: "Augustine of Hippo",
+    color: "#a93535",
+    image:
+      "https://s3.amazonaws.com/cdn.monasteryicons.com/images/popup/st-augustine-of-hippo-icon-703.jpg",
+    prayer: ["TODO"],
+  },
 };
 
 export const getAllSaints = (): Saint[] => {
