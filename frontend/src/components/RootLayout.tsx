@@ -16,7 +16,7 @@ const RootLayout = () => {
 
   return (
     <div className="bg-pwu-primary">
-      <header className="p-4 border-b border-black text-xl">
+      <header className="p-4 bg-pwu-secondary border-b border-black text-xl">
         <div className="flex flex-row">
           <p className="text-xl">Pray With Us</p>
           <div className="mx-4 my-1 w-px bg-black" />
@@ -28,7 +28,7 @@ const RootLayout = () => {
           isExpanded={navbarIsExpanded}
           onExpand={handleOnExpand}
         />
-        <main className="min-h-screen">
+        <main className="min-h-screen flex-1">
           <Outlet />
         </main>
       </div>

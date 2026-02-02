@@ -25,7 +25,7 @@ const SaintForm = ({ saint, setSaint }: SaintFormProps) => {
   };
 
   return (
-    <div className="w-full p-8 rounded-md mx-4 bg-pwu-secondary border-black border">
+    <div className="w-full p-8 rounded-md mx-4 bg-pwu-primary border-black border">
       <form onSubmit={handleSubmit}>
         <div className="grid grid-cols-[auto_1fr] gap-4 items-start">
           <SaintFormInput
