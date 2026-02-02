@@ -1,8 +1,8 @@
 import { RouterProvider, createBrowserRouter } from "react-router-dom";
 
 import RootLayout from "./RootLayout";
-import SaintsGrid from "./SaintsGrid";
-import SaintEditor from "./SaintEditor";
+import SaintsGrid from "../home/SaintsGrid";
+import SaintEditor from "../edit/SaintEditor";
 
 const router = createBrowserRouter([
   {

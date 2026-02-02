@@ -3,8 +3,8 @@ import { useParams } from "react-router-dom";
 
 import type { Saint } from "@/types/saint";
 import { useGet } from "@/hooks/useGet";
+import SaintCard from "@/components/shared/SaintCard";
 import SaintForm from "./SaintForm";
-import SaintCard from "./SaintCard";
 
 const SaintEditor = () => {
   const [saint, setSaint] = useState<Saint | null>(null);

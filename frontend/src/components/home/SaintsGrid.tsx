@@ -2,7 +2,7 @@ import { useState } from "react";
 
 import { useGet } from "@/hooks/useGet";
 import type { Saint } from "@/types/saint";
-import SaintCard from "./SaintCard";
+import SaintCard from "../shared/SaintCard";
 
 const SaintsGrid = () => {
   const [saints, setSaints] = useState<Saint[]>([]);
