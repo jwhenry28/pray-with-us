@@ -3,4 +3,5 @@
 @theme {
   --color-pwu-primary: #fcf3d9;
   --color-pwu-secondary: #fdedad;
+  --font-sans: "Inter", sans-serif;
 }

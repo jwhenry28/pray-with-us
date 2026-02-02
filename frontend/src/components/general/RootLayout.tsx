@@ -8,7 +8,7 @@ const RootLayout = () => {
   const currentMatch = matches[matches.length - 1];
   const pageTitle = (currentMatch?.handle as { title?: string })?.title ?? "";
 
-  const [navbarIsExpanded, setNavbarIsExpanded] = useState(false);
+  const [navbarIsExpanded, setNavbarIsExpanded] = useState(true);
 
   const handleOnExpand = () => {
     setNavbarIsExpanded((prev) => !prev);

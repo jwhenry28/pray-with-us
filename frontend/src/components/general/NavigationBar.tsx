@@ -1,5 +1,12 @@
 import { NavLink } from "react-router-dom";
-import { House, User, Settings, ChevronLeft, ChevronRight } from "lucide-react";
+import {
+  House,
+  CircleFadingPlus,
+  User,
+  Settings,
+  ChevronLeft,
+  ChevronRight,
+} from "lucide-react";
 import type { LucideIcon } from "lucide-react";
 
 type NavigationBarProps = {
@@ -10,7 +17,10 @@ type NavigationBarProps = {
 const NavigationBar = ({ isExpanded, onExpand }: NavigationBarProps) => {
   const NavLinkWrapper = (path: string, label: string, Icon: LucideIcon) => {
     return (
-      <NavLink to={path} className="flex items-center gap-4 py-2 px-4 whitespace-nowrap hover:bg-pwu-secondary hover:cursor-pointer">
+      <NavLink
+        to={path}
+        className="flex items-center gap-4 py-2 px-4 whitespace-nowrap hover:bg-pwu-secondary hover:cursor-pointer"
+      >
         <Icon size={20} className="shrink-0" />
         <span
           className={`transition-opacity duration-300 ${isExpanded ? "opacity-100" : "opacity-0"}`}
@@ -26,7 +36,8 @@ const NavigationBar = ({ isExpanded, onExpand }: NavigationBarProps) => {
       className={`relative pr-4 transition-all duration-300 ease-in-out ${isExpanded ? "w-48" : "w-22"}`}
     >
       <nav className="flex flex-col justify-between bg-pwu-primary py-4 border border-black rounded-md overflow-hidden">
-        {NavLinkWrapper("/saints", "Home", House)}
+        {NavLinkWrapper("/", "Home", House)}
+        {NavLinkWrapper("/saints", "Saints", CircleFadingPlus)}
         {NavLinkWrapper("/users", "Users", User)}
         {NavLinkWrapper("/settings", "Settings", Settings)}
       </nav>
