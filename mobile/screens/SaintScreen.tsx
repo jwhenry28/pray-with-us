@@ -4,8 +4,6 @@ import { NativeStackNavigationProp } from "@react-navigation/native-stack";
 import { RouteProp } from "@react-navigation/native";
 
 import { RootStackParamList } from "../types";
-import useGetSaintData from "../hooks/useGetSaintData";
-import useGetSaintCardData from "../hooks/useGetSaintCardData";
 import TypewriterText from "../components/TypewriterText";
 
 type SaintScreenProps = {
@@ -14,14 +12,12 @@ type SaintScreenProps = {
 };
 
 const SaintScreen = ({ route, navigation }: SaintScreenProps) => {
-  const saintId = route.params.saintId;
+  const saint = route.params.saint;
 
   const [prayerIndex, setPrayerIndex] = useState(0);
   const [typeWriterDone, setTypewriterDone] = useState(false);
-  const { data: saintData } = useGetSaintData({ id: saintId });
-  const { data: saintCardData } = useGetSaintCardData({ id: saintId });
 
-  const prayerSet = saintData.prayer;
+  const prayerSet = saint.prayer;
   const currentPrayer = prayerSet[prayerIndex];
 
   const nextPrayerHandler = () => {
@@ -49,7 +45,7 @@ const SaintScreen = ({ route, navigation }: SaintScreenProps) => {
     <Pressable
       style={({ pressed }) => [
         styles.outerContainer,
-        { backgroundColor: saintCardData.color },
+        { backgroundColor: saint.color },
         pressed && styles.pressed,
       ]}
       onPress={onPressHandler}
@@ -60,7 +56,7 @@ const SaintScreen = ({ route, navigation }: SaintScreenProps) => {
         style={styles.text}
         onDoneTyping={onTypewriterDone}
       />
-      <Text style={styles.title}>{saintCardData.name}</Text>
+      <Text style={styles.title}>{saint.name}</Text>
     </Pressable>
   );
 };

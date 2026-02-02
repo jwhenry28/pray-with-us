@@ -1,7 +1,8 @@
 import { useState } from "react";
 
-import { SaintData } from "../types";
+import { Saint } from "../types";
 import { dummySaintData } from "./data";
+import { useGet } from "./useGet";
 
 const useGetSaintData = ({
   id,
@@ -9,14 +10,14 @@ const useGetSaintData = ({
   id: string;
 }): {
   isLoading: boolean;
-  data: SaintData;
+  data: Saint | null;
 } => {
-  const [isLoading, setIsLoading] = useState<boolean>(false);
-  const [saintsData, setSaintsData] = useState<SaintData>(dummySaintData[id]);
+  const [saint, setSaint] = useState<Saint | null>(null);
+  const { error, loading } = useGet<Saint>(`/saints/{id}`, setSaint);
 
   return {
-    isLoading: isLoading,
-    data: saintsData,
+    isLoading: loading,
+    data: saint,
   };
 };
 

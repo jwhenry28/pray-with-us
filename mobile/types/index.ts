@@ -1,5 +1,4 @@
-import SaintCardData from "./saintCardData";
-import SaintData from "./saintData";
+import { Saint } from "./saint";
 import { RootStackParamList } from "./navigation";
 
-export { SaintData, SaintCardData, RootStackParamList };
+export { Saint, RootStackParamList };

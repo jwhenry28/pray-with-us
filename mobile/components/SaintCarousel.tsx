@@ -1,14 +1,14 @@
 import Carousel from "react-native-reanimated-carousel";
-import { View, Text, Dimensions, StyleSheet } from "react-native";
+import { View, Dimensions, StyleSheet } from "react-native";
 
-import useGetSaintCardsData from "../hooks/useGetSaintCardsData";
+import useGetAllSaints from "../hooks/useGetAllSaints";
 
 import SaintCard from "./SaintCard";
 
 const { width: screenWidth } = Dimensions.get("window");
 
 const SaintCarousel = () => {
-  const { isLoading, data } = useGetSaintCardsData();
+  const { isLoading, data } = useGetAllSaints();
   return (
     <View style={styles.container}>
       <Carousel

@@ -2,10 +2,10 @@ import { View, Text, StyleSheet, Pressable, Image } from "react-native";
 import { useNavigation } from "@react-navigation/native";
 import { NativeStackNavigationProp } from "@react-navigation/native-stack";
 
-import { SaintCardData, RootStackParamList } from "../types";
+import { Saint, RootStackParamList } from "../types";
 
 type SaintCardProps = {
-  item: SaintCardData;
+  item: Saint;
 };
 
 const SaintCard = ({ item }: SaintCardProps) => {
@@ -13,7 +13,7 @@ const SaintCard = ({ item }: SaintCardProps) => {
     useNavigation<NativeStackNavigationProp<RootStackParamList>>();
 
   const selectSaintHandler = () => {
-    navigation.navigate("Saint", { saintId: item.id });
+    navigation.navigate("Saint", { saint: item });
   };
 
   return (
