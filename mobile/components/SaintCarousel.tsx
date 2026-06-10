@@ -10,7 +10,7 @@ const { width: screenWidth } = Dimensions.get("window");
 const SaintCarousel = () => {
   const { isLoading, data } = useGetAllSaints();
   return (
-    <View style={styles.container}>
+    <View>
       <Carousel
         width={screenWidth}
         height={500}
@@ -21,11 +21,5 @@ const SaintCarousel = () => {
     </View>
   );
 };
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-  },
-});
 
 export default SaintCarousel;

@@ -75,21 +75,22 @@ const styles = StyleSheet.create({
   },
   title: {
     flex: 1,
-    fontWeight: "bold",
     fontSize: 24,
     textAlign: "center",
     marginTop: 2,
     marginBottom: 12,
-    fontFamily: "monospace",
+    color: "black",
+    fontFamily: "Inter_700Bold",
   },
   text: {
     flex: 19,
     fontSize: 36,
     textAlign: "center",
     textAlignVertical: "center",
-    letterSpacing: 4,
+    letterSpacing: 2,
     lineHeight: 72,
-    fontFamily: "monospace",
+    color: "black",
+    fontFamily: "Inter_400Regular",
   },
 });
 
